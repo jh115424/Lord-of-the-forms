@@ -1,41 +1,22 @@
 import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
 
+import { isEmailValid, isCityValid, isNameValid } from "../utils/validations";
+
 const firstNameErrorMessage = "First name must be at least 2 characters long";
 const lastNameErrorMessage = "Last name must be at least 2 characters long";
 const emailErrorMessage = "Email is Invalid";
 const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
-
-
-
 export const FunctionalForm = (props) => {
-  const { userData, setUserData } = useState(null);
-
+  const [userData, setUserData] = useState(null);
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [cityInput, setCityInput] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-
   const [phoneNumber, setPhoneNumber] = useState("");
-
-
-  
-
-  const isFirstNameValid = () => {
-    return firstNameInput.length >= 2;
-  };
-  const isLastNameValid = () => {
-    return lastNameInput.length >= 2;
-  };
-  const isEmailValid = () => {
-    return emailInput.includes("@");
-  };
-  const isCityValid = () => {
-    return cityInput.length >= 2;
-  };
 
   return (
     <form>
@@ -54,8 +35,8 @@ export const FunctionalForm = (props) => {
           value={firstNameInput}
         />
       </div>
-      {!isFirstNameValid() && (
-        <ErrorMessage message={firstNameErrorMessage} show={false} />
+      {!isNameValid(firstNameInput) && (
+        <ErrorMessage message={firstNameErrorMessage} show={true} />
       )}
       {/* <ErrorMessage message={firstNameErrorMessage} show={true} /> */}
 
@@ -70,7 +51,7 @@ export const FunctionalForm = (props) => {
           value={lastNameInput}
         />
       </div>
-      {!isLastNameValid() && (
+      {!isNameValid(lastNameInput) && (
         <ErrorMessage message={lastNameErrorMessage} show={true} />
       )}
 
@@ -87,7 +68,7 @@ export const FunctionalForm = (props) => {
           value={emailInput}
         />
       </div>
-      {!isEmailValid() && (
+      {!isEmailValid(emailInput) && (
         <ErrorMessage message={emailErrorMessage} show={true} />
       )}
       {/* <ErrorMessage message={emailErrorMessage} show={true} /> */}
@@ -103,7 +84,7 @@ export const FunctionalForm = (props) => {
           value={cityInput}
         />
       </div>
-      {!isCityValid() && (
+      {!isCityValid(cityInput) && (
         <ErrorMessage message={cityErrorMessage} show={true} />
       )}
       {/* <ErrorMessage message={cityErrorMessage} show={true} /> */}
