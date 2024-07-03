@@ -7,21 +7,34 @@ const emailErrorMessage = "Email is Invalid";
 const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
+
+
+
 export const FunctionalForm = (props) => {
+  const { userData, setUserData } = useState(null);
+
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [cityInput, setCityInput] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { userData, setUserData } = useState(null);
+
+
+  
 
   const isFirstNameValid = () => {
     return firstNameInput.length >= 2;
-
-    const isLastNameValid = () => {
-      return lastNameInput.length >= 2;
-    };
+  };
+  const isLastNameValid = () => {
+    return lastNameInput.length >= 2;
+  };
+  const isEmailValid = () => {
+    return emailInput.includes("@");
+  };
+  const isCityValid = () => {
+    return cityInput.length >= 2;
   };
 
   return (
@@ -42,7 +55,7 @@ export const FunctionalForm = (props) => {
         />
       </div>
       {!isFirstNameValid() && (
-        <ErrorMessage message={firstNameErrorMessage} show={true} />
+        <ErrorMessage message={firstNameErrorMessage} show={false} />
       )}
       {/* <ErrorMessage message={firstNameErrorMessage} show={true} /> */}
 
@@ -57,8 +70,11 @@ export const FunctionalForm = (props) => {
           value={lastNameInput}
         />
       </div>
+      {!isLastNameValid() && (
+        <ErrorMessage message={lastNameErrorMessage} show={true} />
+      )}
 
-      <ErrorMessage message={lastNameErrorMessage} show={true} />
+      {/* <ErrorMessage message={lastNameErrorMessage} show={true} /> */}
 
       {/* Email Input */}
       <div className="input-wrap">
@@ -71,7 +87,10 @@ export const FunctionalForm = (props) => {
           value={emailInput}
         />
       </div>
-      <ErrorMessage message={emailErrorMessage} show={true} />
+      {!isEmailValid() && (
+        <ErrorMessage message={emailErrorMessage} show={true} />
+      )}
+      {/* <ErrorMessage message={emailErrorMessage} show={true} /> */}
 
       {/* City Input */}
       <div className="input-wrap">
@@ -84,7 +103,10 @@ export const FunctionalForm = (props) => {
           value={cityInput}
         />
       </div>
-      <ErrorMessage message={cityErrorMessage} show={true} />
+      {!isCityValid() && (
+        <ErrorMessage message={cityErrorMessage} show={true} />
+      )}
+      {/* <ErrorMessage message={cityErrorMessage} show={true} /> */}
 
       <div className="input-wrap">
         <label htmlFor="phone">Phone:</label>
