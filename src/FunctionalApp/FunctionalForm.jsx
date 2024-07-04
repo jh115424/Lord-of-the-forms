@@ -1,5 +1,6 @@
 import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
+// import { PhoneInput } from "../PhoneInput";
 
 import { isEmailValid, isCityValid, isNameValid } from "../utils/validations";
 
@@ -38,7 +39,6 @@ export const FunctionalForm = (props) => {
       {!isNameValid(firstNameInput) && (
         <ErrorMessage message={firstNameErrorMessage} show={true} />
       )}
-      {/* <ErrorMessage message={firstNameErrorMessage} show={true} /> */}
 
       {/* last name input */}
       <div className="input-wrap">
@@ -55,8 +55,6 @@ export const FunctionalForm = (props) => {
         <ErrorMessage message={lastNameErrorMessage} show={true} />
       )}
 
-      {/* <ErrorMessage message={lastNameErrorMessage} show={true} /> */}
-
       {/* Email Input */}
       <div className="input-wrap">
         <label>{"Email"}:</label>
@@ -71,7 +69,6 @@ export const FunctionalForm = (props) => {
       {!isEmailValid(emailInput) && (
         <ErrorMessage message={emailErrorMessage} show={true} />
       )}
-      {/* <ErrorMessage message={emailErrorMessage} show={true} /> */}
 
       {/* City Input */}
       <div className="input-wrap">
@@ -87,18 +84,50 @@ export const FunctionalForm = (props) => {
       {!isCityValid(cityInput) && (
         <ErrorMessage message={cityErrorMessage} show={true} />
       )}
-      {/* <ErrorMessage message={cityErrorMessage} show={true} /> */}
 
       <div className="input-wrap">
         <label htmlFor="phone">Phone:</label>
         <div id="phone-input-wrap">
-          <input type="text" id="phone-input-1" placeholder="55" />
+   
+          <input
+            type="text"
+            id="phone-input-1"
+            placeholder="55"
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+            value={phoneNumber}
+          />
           -
-          <input type="text" id="phone-input-2" placeholder="55" />
+          <input
+            type="text"
+            id="phone-input-2"
+            placeholder="55"
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+            value={phoneNumber}
+          />
           -
-          <input type="text" id="phone-input-3" placeholder="55" />
+          <input
+            type="text"
+            id="phone-input-3"
+            placeholder="55"
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+            value={phoneNumber}
+          />
           -
-          <input type="text" id="phone-input-4" placeholder="5" />
+          <input
+            type="text"
+            id="phone-input-4"
+            placeholder="5"
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+            value={phoneNumber}
+          />
         </div>
       </div>
 

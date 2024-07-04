@@ -14,3 +14,7 @@ export const isNameValid = (name) => {
 export const isCityValid = (city) => {
   return city.length >= 2;
 };
+
+export const isPhoneValid = (phone) => {
+  return phone.length >= 10;
+}
