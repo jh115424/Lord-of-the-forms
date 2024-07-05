@@ -1,6 +1,5 @@
 import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
-// import { PhoneInput } from "../PhoneInput";
 
 import { isEmailValid, isCityValid, isNameValid } from "../utils/validations";
 
@@ -17,10 +16,18 @@ export const FunctionalForm = (props) => {
   const [emailInput, setEmailInput] = useState("");
   const [cityInput, setCityInput] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [phoneInput, setPhoneInput] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    // setIsPhoneValid(true);
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <u>
         <h3>User Information Form</h3>
       </u>
@@ -31,12 +38,13 @@ export const FunctionalForm = (props) => {
         <input
           placeholder="Bilbo"
           onChange={(e) => {
+            e.preventDefault();
             setFirstNameInput(e.target.value);
           }}
           value={firstNameInput}
         />
       </div>
-      {!isNameValid(firstNameInput) && (
+      {!isNameValid(firstNameInput) && isSubmitted && (
         <ErrorMessage message={firstNameErrorMessage} show={true} />
       )}
 
@@ -46,12 +54,13 @@ export const FunctionalForm = (props) => {
         <input
           placeholder="Baggins"
           onChange={(e) => {
+            e.preventDefault();
             setLastNameInput(e.target.value);
           }}
           value={lastNameInput}
         />
       </div>
-      {!isNameValid(lastNameInput) && (
+      {!isNameValid(lastNameInput) && isSubmitted && (
         <ErrorMessage message={lastNameErrorMessage} show={true} />
       )}
 
@@ -61,12 +70,13 @@ export const FunctionalForm = (props) => {
         <input
           placeholder="bilbo-baggins@adventurehobbits.net"
           onChange={(e) => {
+            e.preventDefault();
             setEmailInput(e.target.value);
           }}
           value={emailInput}
         />
       </div>
-      {!isEmailValid(emailInput) && (
+      {!isEmailValid(emailInput) && isSubmitted && (
         <ErrorMessage message={emailErrorMessage} show={true} />
       )}
 
@@ -76,19 +86,19 @@ export const FunctionalForm = (props) => {
         <input
           placeholder="Hobbiton"
           onChange={(e) => {
+            e.preventDefault();
             setCityInput(e.target.value);
           }}
           value={cityInput}
         />
       </div>
-      {!isCityValid(cityInput) && (
+      {!isCityValid(cityInput) && isSubmitted && (
         <ErrorMessage message={cityErrorMessage} show={true} />
       )}
 
       <div className="input-wrap">
         <label htmlFor="phone">Phone:</label>
         <div id="phone-input-wrap">
-   
           <input
             type="text"
             id="phone-input-1"
@@ -130,8 +140,9 @@ export const FunctionalForm = (props) => {
           />
         </div>
       </div>
-
-      <ErrorMessage message={phoneNumberErrorMessage} show={true} />
+      {!isPhoneValid && isSubmitted && (
+        <ErrorMessage message={phoneNumberErrorMessage} show={true} />
+      )}
 
       <input type="submit" value="Submit" />
     </form>
