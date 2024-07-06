@@ -6,7 +6,7 @@ export const FunctionalApp = () => {
     <>
       <h2>Functional</h2>
       <ProfileInformation userData={null} />
-      <FunctionalForm   />
+      <FunctionalForm  />
     </>
   );
 };

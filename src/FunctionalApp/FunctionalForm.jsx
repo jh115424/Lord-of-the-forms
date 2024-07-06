@@ -1,5 +1,6 @@
 import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
+import { FunctionalPhoneInput } from "../FunctionalPhoneInput";
 
 import { isEmailValid, isCityValid, isNameValid } from "../utils/validations";
 
@@ -10,20 +11,22 @@ const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
 export const FunctionalForm = (props) => {
+  const [isValidCity, setIsValidCity] = useState(true);
   const [userData, setUserData] = useState(null);
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [cityInput, setCityInput] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [phoneInput, setPhoneInput] = useState("");
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isPhoneValid, setIsPhoneValid] = useState(false);
+
+  const [inputs, setInPuts] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-    // setIsPhoneValid(true);
   };
 
   return (
@@ -96,50 +99,11 @@ export const FunctionalForm = (props) => {
         <ErrorMessage message={cityErrorMessage} show={true} />
       )}
 
-      <div className="input-wrap">
-        <label htmlFor="phone">Phone:</label>
-        <div id="phone-input-wrap">
-          <input
-            type="text"
-            id="phone-input-1"
-            placeholder="55"
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-            }}
-            value={phoneNumber}
-          />
-          -
-          <input
-            type="text"
-            id="phone-input-2"
-            placeholder="55"
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-            }}
-            value={phoneNumber}
-          />
-          -
-          <input
-            type="text"
-            id="phone-input-3"
-            placeholder="55"
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-            }}
-            value={phoneNumber}
-          />
-          -
-          <input
-            type="text"
-            id="phone-input-4"
-            placeholder="5"
-            onChange={(e) => {
-              setPhoneNumber(e.target.value);
-            }}
-            value={phoneNumber}
-          />
-        </div>
-      </div>
+      <FunctionalPhoneInput
+        phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
+      />
+
       {!isPhoneValid && isSubmitted && (
         <ErrorMessage message={phoneNumberErrorMessage} show={true} />
       )}
