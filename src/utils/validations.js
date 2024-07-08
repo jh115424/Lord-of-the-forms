@@ -7,6 +7,7 @@ export function isEmailValid(emailAddress) {
 }
 
 // how can you use a regex to check if the name contains a number
+
 export const isNameValid = (name) => {
   return name.length >= 2;
 };
@@ -16,5 +17,5 @@ export const isCityValid = (city) => {
 };
 
 export const isPhoneValid = (phone) => {
-  return phone.length >= 2;
+  return phone.join("").length >= 7;
 };

@@ -62,8 +62,8 @@ My recommendation is read through all the requirements once, then focus more on 
 
 Validation UI
 
-- [ ] Under input errors should not show UNLESS the user has already tried submitting once
-- [ ] Errors should go away as soon as the field is fixed, not on submit
+- [ ] Under input errors should not show UNLESS the user has already tried submitting once- done
+- [ ] Errors should go away as soon as the field is fixed, not on submit -done
 - [ ] If a user tries to submit a form with bad inputs, an alert message will say "Bad Inputs" then the exact errors will pop up under the incorrect inputs
 - [ ] When a user successfully submits the form, it should update the userInformation and show the user information in the ProfileInformation Component
 - [ ] First Name should be at least 2 characters long and should not contain numbers
@@ -112,7 +112,7 @@ Profile Information Component
 - build a `capitalize` function in `transformations.ts` to correctly display a first and last name
 
 - [ ] build a `formatPhone` function in `transformations.ts` that will turn "1234567" into "12-34-56-7"
-- [ ] use `capitalize` and `formatPHone` in the `ProfileInformation` component in order to format things appropriately
+- [ ] use `capitalize` and `formatPhone` in the `ProfileInformation` component in order to format things appropriately
 
 Email Validations
 

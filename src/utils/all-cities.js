@@ -115,3 +115,5 @@ export const allCities = [
   "Willowbottom",
   "Woodhall",
 ];
+
+export default allCities;
