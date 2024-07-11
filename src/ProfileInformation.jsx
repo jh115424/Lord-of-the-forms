@@ -10,6 +10,7 @@ export const InfoRow = ({ label, value }) => {
 };
 export const ProfileInformation = ({ userData }) => {
   if (!userData) {
+
     return (
       <>
         <u>

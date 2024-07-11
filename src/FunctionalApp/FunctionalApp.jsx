@@ -7,8 +7,8 @@ export const FunctionalApp = ({}) => {
   return (
     <>
       <h2>Functional</h2>
-      <ProfileInformation userData={null} />
-      <FunctionalForm   />
+      <ProfileInformation setUserData={setUserData} userData={userData} />
+      <FunctionalForm setUserData={setUserData} userData={userData} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { allCities } from "./all-cities";
+
 
 export function isEmailValid(emailAddress) {
   // eslint-disable-next-line no-useless-escape

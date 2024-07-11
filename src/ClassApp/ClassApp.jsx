@@ -11,6 +11,12 @@ const defaultUser = {
 };
 
 export class ClassApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData: null,
+    };
+  }
   render() {
     return (
       <>

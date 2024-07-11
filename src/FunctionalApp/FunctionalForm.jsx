@@ -1,6 +1,7 @@
 import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
-import { FunctionalPhoneInput } from "../FunctionalPhoneInput";
+import { FunctionalPhoneInput } from "./FunctionalPhoneInput";
+import { ProfileInformation } from "../ProfileInformation";
 
 import {
   isEmailValid,
@@ -15,8 +16,8 @@ const emailErrorMessage = "Email is Invalid";
 const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
-export const FunctionalForm = (props) => {
-  const [userData, setUserData] = useState(null);
+export const FunctionalForm = ({ setUserData, userData }) => {
+  // const [userData, setUserData] = useState(null);
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
@@ -29,9 +30,21 @@ export const FunctionalForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (e.target.checkValidity()) {
+      setIsSubmitted(true);
+    }
 
+    // we need to check if there is bad info!
     alert("bad data input");
     setIsSubmitted(true);
+
+    setUserData({
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      city: cityInput,
+      phoneNumber: phoneNumberInput,
+    });
   };
 
   return (
@@ -118,3 +131,7 @@ export const FunctionalForm = (props) => {
     </form>
   );
 };
+
+//import components only if you want to return them from the function
+//setState changes the state object
+//javascript can be passed as props using {} .   ex. setData = {pizza} userData={food}
