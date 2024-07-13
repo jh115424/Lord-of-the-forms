@@ -30,21 +30,44 @@ export const FunctionalForm = ({ setUserData, userData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (e.target.checkValidity()) {
-      setIsSubmitted(true);
-    }
+    // how do verify our inputs for the error messages and can we do that or something similar here?
+    // check if all inputs are valid
+    // if they aren't, then we can alert AND prevent the updating of the userData
+    // alert("Bad data Input");
 
-    // we need to check if there is bad info!
-    alert("bad data input");
     setIsSubmitted(true);
 
-    setUserData({
-      firstName: firstNameInput,
-      lastName: lastNameInput,
-      email: emailInput,
-      city: cityInput,
-      phoneNumber: phoneNumberInput,
-    });
+    if (!userData) {
+      // second option
+      alert("Bad data Input");
+      setUserData({
+        firstName: firstNameInput,
+        lastName: lastNameInput,
+        email: emailInput,
+        city: cityInput,
+        phoneNumber: phoneNumberInput,
+      });
+      setUserData(userData);
+    }
+    setIsSubmitted(true);
+
+
+
+
+    
+
+    // alert("Bad data Input");
+    // if all is ok, then we can update just fine
+
+    // setIsSubmitted(true);
+
+    // setUserData({                   // original option
+    //   firstName: firstNameInput,
+    //   lastName: lastNameInput,
+    //   email: emailInput,
+    //   city: cityInput,
+    //   phoneNumber: phoneNumberInput,
+    // });
   };
 
   return (
