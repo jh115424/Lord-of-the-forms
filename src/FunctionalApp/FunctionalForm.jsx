@@ -1,7 +1,7 @@
 import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
 import { FunctionalPhoneInput } from "./FunctionalPhoneInput";
-import { ProfileInformation } from "../ProfileInformation";
+// import { ProfileInformation } from "../ProfileInformation";
 
 import {
   isEmailValid,
@@ -17,57 +17,39 @@ const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
 export const FunctionalForm = ({ setUserData, userData }) => {
-  // const [userData, setUserData] = useState(null);
   const [firstNameInput, setFirstNameInput] = useState("");
   const [lastNameInput, setLastNameInput] = useState("");
   const [emailInput, setEmailInput] = useState("");
   const [cityInput, setCityInput] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [citiesListInput, setCitiesListInput] = useState([]);
-  const [phoneNumberInput, setPhoneNumberInput] = useState(["", "", "", ""]); //piece of state
+  const [phoneNumberInput, setPhoneNumberInput] = useState(["", "", "", ""]);
 
   const [inputs, setInPuts] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // how do verify our inputs for the error messages and can we do that or something similar here?
-    // check if all inputs are valid
-    // if they aren't, then we can alert AND prevent the updating of the userData
-    // alert("Bad data Input");
 
-    setIsSubmitted(true);
-
-    if (!userData) {
-      // second option
+    if (
+      !isEmailValid(emailInput) ||
+      !isCityValid(cityInput) ||
+      !isPhoneValid(phoneNumberInput) ||
+      !isNameValid(firstNameInput) ||
+      !isNameValid(lastNameInput)
+    ) {
+      setIsSubmitted(true);
       alert("Bad data Input");
-      setUserData({
-        firstName: firstNameInput,
-        lastName: lastNameInput,
-        email: emailInput,
-        city: cityInput,
-        phoneNumber: phoneNumberInput,
-      });
-      setUserData(userData);
+      return;
     }
-    setIsSubmitted(true);
 
-
-
-
-    
-
-    // alert("Bad data Input");
-    // if all is ok, then we can update just fine
-
-    // setIsSubmitted(true);
-
-    // setUserData({                   // original option
-    //   firstName: firstNameInput,
-    //   lastName: lastNameInput,
-    //   email: emailInput,
-    //   city: cityInput,
-    //   phoneNumber: phoneNumberInput,
-    // });
+    setIsSubmitted(false);
+    setUserData({
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      email: emailInput,
+      city: cityInput,
+      phoneNumber: phoneNumberInput,
+    });
   };
 
   return (
@@ -154,7 +136,3 @@ export const FunctionalForm = ({ setUserData, userData }) => {
     </form>
   );
 };
-
-//import components only if you want to return them from the function
-//setState changes the state object
-//javascript can be passed as props using {} .   ex. setData = {pizza} userData={food}
