@@ -7,7 +7,26 @@ const emailErrorMessage = "Email is Invalid";
 const cityErrorMessage = "State is Invalid";
 const phoneNumberErrorMessage = "Invalid Phone Number";
 
+import {
+  isCityValid,
+  isEmailValid,
+  isPhoneValid,
+  isNameValid,
+} from "../utils/validations";
+
 export class ClassForm extends Component {
+  constructor(props) {
+    const { handleUserInformation } = props;
+    super(props);
+    this.state = {
+      firstNameInput: "",
+      lastNameInput: "",
+      emailInput: "",
+      cityInput: "",
+      isSubmitted: false,
+      phoneNumberInput: ["", "", "", ""],
+    };
+  }
   render() {
     return (
       <form>

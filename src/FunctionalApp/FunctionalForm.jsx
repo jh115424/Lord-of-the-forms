@@ -2,6 +2,7 @@ import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
 import { FunctionalPhoneInput } from "./FunctionalPhoneInput";
 // import { ProfileInformation } from "../ProfileInformation";
+import { capitalize } from "../utils/transformations";
 
 import {
   isEmailValid,
@@ -30,6 +31,8 @@ export const FunctionalForm = ({ setUserData, userData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setIsSubmitted(true);
+
     if (
       !isEmailValid(emailInput) ||
       !isCityValid(cityInput) ||
@@ -37,19 +40,17 @@ export const FunctionalForm = ({ setUserData, userData }) => {
       !isNameValid(firstNameInput) ||
       !isNameValid(lastNameInput)
     ) {
-      setIsSubmitted(true);
       alert("Bad data Input");
       return;
     }
 
-    setIsSubmitted(false);
     setUserData({
-      firstName: firstNameInput,
-      lastName: lastNameInput,
+      firstName: capitalize(firstNameInput),
+      lastName: capitalize(lastNameInput),
       email: emailInput,
-      city: cityInput,
+      city: capitalize(cityInput),
       phoneNumber: phoneNumberInput,
-    });
+    })
   };
 
   return (
