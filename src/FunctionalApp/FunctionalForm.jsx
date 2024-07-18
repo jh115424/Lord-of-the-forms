@@ -2,7 +2,7 @@ import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
 import { FunctionalPhoneInput } from "./FunctionalPhoneInput";
 // import { ProfileInformation } from "../ProfileInformation";
-import { capitalize } from "../utils/transformations";
+import { capitalize, formatPhoneNumber } from "../utils/transformations";
 
 import {
   isEmailValid,
@@ -49,8 +49,8 @@ export const FunctionalForm = ({ setUserData, userData }) => {
       lastName: capitalize(lastNameInput),
       email: emailInput,
       city: capitalize(cityInput),
-      phoneNumber: phoneNumberInput,
-    })
+      phoneNumber: formatPhoneNumber(phoneNumberInput),
+    });
   };
 
   return (

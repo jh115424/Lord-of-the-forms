@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { ClassForm } from "./ClassForm";
 import { ProfileInformation } from "../ProfileInformation";
+import { useState } from "react";
 
 const defaultUser = {
   email: "default@default.com",
@@ -12,21 +13,20 @@ const defaultUser = {
 
 export class ClassApp extends Component {
   constructor(props) {
+    // const [userData, setUserData] = useState(null);
     super(props);
     this.state = {
       userData: null,
     };
   }
   render() {
+    const { userData } = this.state;
     return (
       <>
         <h2>Class</h2>
         <ProfileInformation
-          userData={
-            // toggle the following lines to change
-            // null
-            defaultUser
-          }
+          userData={userData || defaultUser}
+          setUserData={defaultUser}
         />
         <ClassForm />
       </>
