@@ -38,7 +38,7 @@ export class ClassForm extends Component {
       cityInput,
       isSubmitted,
       phoneNumberInput,
-      // setPhoneNumberInput,
+      citiesListInput,
     } = this.state;
 
     return (
@@ -56,6 +56,7 @@ export class ClassForm extends Component {
               e.preventDefault();
               this.setState({
                 firstNameInput: e.target.value,
+                setFirstNameInput: e.target.value,
               });
               this.setState({
                 isSubmitted: true,
@@ -77,6 +78,7 @@ export class ClassForm extends Component {
               e.preventDefault();
               this.setState({
                 lastNameInput: e.target.value,
+                setLastNameInput: e.target.value,
               });
               this.setState({
                 isSubmitted: true,
@@ -131,11 +133,6 @@ export class ClassForm extends Component {
         {!isCityValid(cityInput) && isSubmitted && (
           <ErrorMessage message={cityErrorMessage} show={true} />
         )}
-
-        {/* <ClassPhoneInput
-        phoneNumberInput={phoneNumberInput}
-        setPhoneNumberInput={setPhoneNumberInput}
-        /> */}
 
         <div className="input-wrap">
           <label htmlFor="phone">Phone:</label>

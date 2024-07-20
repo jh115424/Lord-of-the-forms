@@ -1,16 +1,11 @@
 import { useRef } from "react";
 
-export const FunctionalPhoneInput = ({
-  phoneNumberInput,
-  setPhoneNumberInput,
-}) => {
+export const ClassPhoneInput = ({ phoneNumberInput, setPhoneNumberInput }) => {
   const ref0 = useRef(null);
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
-
   const refs = [ref0, ref1, ref2, ref3];
-
   const handlePhoneNumberChange =
     (index) =>
     ({ target: { value } }) => {
@@ -18,10 +13,8 @@ export const FunctionalPhoneInput = ({
       const currentMaxLength = valueLength[index];
       const nextRef = refs[index + 1];
       const previousRef = refs[index - 1];
-
       const shouldGoToNextRef =
         currentMaxLength === value.length && nextRef?.current;
-
       const shouldGoToPreviousRef = value.length === 0 && index !== 0;
       const newState = phoneNumberInput.map((numberInput, numberIndex) =>
         index === numberIndex ? value.replace(/[^0-9]/g, "") : numberInput
