@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { ErrorMessage } from "../ErrorMessage";
 // import { ProfileInformation } from "../ProfileInformation";
-// import { capitalize} from "../utils/transformations";
-// import { ClassPhoneInput } from "./ClassPhoneInput";
+import { capitalize, formatPhoneNumber } from "../utils/transformations";
+import { ClassPhoneInput } from "./ClassPhoneInput";
 
 const firstNameErrorMessage = "First name must be at least 2 characters long";
 const lastNameErrorMessage = "Last name must be at least 2 characters long";
@@ -30,6 +30,13 @@ export class ClassForm extends Component {
       phoneNumberInput: ["", "", "", ""],
     };
   }
+
+  handlePhoneNumberInput = (phoneNumber) => {
+    this.setState({
+      phoneNumberInput: phoneNumber,
+    });
+  };
+
   render() {
     const {
       firstNameInput,
@@ -42,10 +49,8 @@ export class ClassForm extends Component {
     } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <u>
-          <h3>User Information Form</h3>
-        </u>
+      <form onSubmit={this.handlePhoneNumberInput}>
+        <h3>User Information Form</h3>
 
         {/* first name input */}
         <div className="input-wrap">
@@ -135,16 +140,12 @@ export class ClassForm extends Component {
         )}
 
         <div className="input-wrap">
-          <label htmlFor="phone">Phone:</label>
-          <div id="phone-input-wrap">
-            <input type="text" id="phone-input-1" placeholder="55" />
-            -
-            <input type="text" id="phone-input-2" placeholder="55" />
-            -
-            <input type="text" id="phone-input-3" placeholder="55" />
-            -
-            <input type="text" id="phone-input-4" placeholder="5" />
-          </div>
+          {/* <label htmlFor="phone">Phone:</label> */}
+
+          <ClassPhoneInput
+            phoneNumberInput={phoneNumberInput}
+            handlePhoneNumberInput={this.handlePhoneNumberInput}
+          />
         </div>
 
         {!isPhoneValid(phoneNumberInput) && isSubmitted && (

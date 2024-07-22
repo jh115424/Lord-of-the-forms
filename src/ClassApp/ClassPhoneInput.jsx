@@ -1,10 +1,13 @@
-import { useRef } from "react";
+import { createRef } from "react";
 
-export const ClassPhoneInput = ({ phoneNumberInput, setPhoneNumberInput }) => {
-  const ref0 = useRef(null);
-  const ref1 = useRef(null);
-  const ref2 = useRef(null);
-  const ref3 = useRef(null);
+export const ClassPhoneInput = ({
+  phoneNumberInput,
+  handlePhoneNumberInput,
+}) => {
+  const ref0 = createRef();
+  const ref1 = createRef();
+  const ref2 = createRef();
+  const ref3 = createRef();
   const refs = [ref0, ref1, ref2, ref3];
   const handlePhoneNumberChange =
     (index) =>
@@ -25,7 +28,7 @@ export const ClassPhoneInput = ({ phoneNumberInput, setPhoneNumberInput }) => {
       if (shouldGoToPreviousRef) {
         previousRef.current.focus();
       }
-      setPhoneNumberInput(newState);
+      handlePhoneNumberInput(newState);
     };
   {
     {

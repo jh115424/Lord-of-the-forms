@@ -18,7 +18,7 @@ export class ClassApp extends Component {
       <>
         <h2>Class</h2>
         <ProfileInformation userData={this.state.userData} />
-        <ClassForm setUserData={this.setUserData} {...this.state} />
+        <ClassForm setUserData={this.setUserData} />
       </>
     );
   }
