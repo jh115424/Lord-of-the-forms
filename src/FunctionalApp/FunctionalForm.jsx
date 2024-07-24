@@ -1,7 +1,6 @@
 import { ErrorMessage } from "../ErrorMessage";
 import { useState } from "react";
 import { FunctionalPhoneInput } from "./FunctionalPhoneInput";
-// import { ProfileInformation } from "../ProfileInformation";
 import { capitalize, formatPhoneNumber } from "../utils/transformations";
 
 import {

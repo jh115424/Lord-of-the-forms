@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { ErrorMessage } from "../ErrorMessage";
-// import { ProfileInformation } from "../ProfileInformation";
 import { capitalize, formatPhoneNumber } from "../utils/transformations";
 import { ClassPhoneInput } from "./ClassPhoneInput";
 
@@ -37,15 +36,44 @@ export class ClassForm extends Component {
     });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    const {
+      firstNameInput,
+      lastNameInput,
+      emailInput,
+      cityInput,
+      phoneNumberInput,
+    } = this.state;
+
+    if (
+      !isEmailValid(emailInput) ||
+      !isCityValid(cityInput) ||
+      !isPhoneValid(phoneNumberInput) ||
+      !isNameValid(firstNameInput) ||
+      !isNameValid(lastNameInput)
+    ) {
+      alert("Bad data Input");
+      return;
+    }
+    setUserData({
+      firstName: capitalize(firstNameInput),
+      lastName: capitalize(lastNameInput),
+      email: emailInput,
+      city: capitalize(cityInput),
+      phoneNumber: formatPhoneNumber(phoneNumberInput),
+    });
+  };
+
   render() {
     const {
       firstNameInput,
       lastNameInput,
       emailInput,
       cityInput,
-      isSubmitted,
       phoneNumberInput,
-      citiesListInput,
+      isSubmitted,
     } = this.state;
 
     return (
@@ -140,8 +168,6 @@ export class ClassForm extends Component {
         )}
 
         <div className="input-wrap">
-          {/* <label htmlFor="phone">Phone:</label> */}
-
           <ClassPhoneInput
             phoneNumberInput={phoneNumberInput}
             handlePhoneNumberInput={this.handlePhoneNumberInput}

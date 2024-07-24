@@ -6,6 +6,7 @@ import { useState } from "react";
 export class ClassApp extends Component {
   state = {
     userData: null,
+    
   };
 
   setUserData = (userData) => {
@@ -17,7 +18,7 @@ export class ClassApp extends Component {
     return (
       <>
         <h2>Class</h2>
-        <ProfileInformation userData={this.state.userData} />
+        <ProfileInformation userData={this.state.userData}   />
         <ClassForm setUserData={this.setUserData} />
       </>
     );
