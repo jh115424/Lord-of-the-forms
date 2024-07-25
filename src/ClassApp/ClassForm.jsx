@@ -18,7 +18,7 @@ import {
 
 export class ClassForm extends Component {
   constructor(props) {
-    const { handleUserInformation } = props;
+    const { handleUserInformation, setIsSubmitted } = props;
     super(props);
     this.state = {
       firstNameInput: "",
@@ -26,6 +26,7 @@ export class ClassForm extends Component {
       emailInput: "",
       cityInput: "",
       isSubmitted: false,
+
       phoneNumberInput: ["", "", "", ""],
     };
   }
@@ -38,14 +39,21 @@ export class ClassForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+
+    this.setState({
+      isSubmitted: true,
+    });
+
     const {
       firstNameInput,
       lastNameInput,
       emailInput,
       cityInput,
+      setIsSubmitted,
       phoneNumberInput,
     } = this.state;
+
+    const { setUserData } = this.props;
 
     if (
       !isEmailValid(emailInput) ||
@@ -56,14 +64,15 @@ export class ClassForm extends Component {
     ) {
       alert("Bad data Input");
       return;
+    } else {
+      setUserData({
+        firstName: capitalize(firstNameInput),
+        lastName: capitalize(lastNameInput),
+        email: emailInput,
+        city: capitalize(cityInput),
+        phoneNumber: formatPhoneNumber(phoneNumberInput),
+      });
     }
-    setUserData({
-      firstName: capitalize(firstNameInput),
-      lastName: capitalize(lastNameInput),
-      email: emailInput,
-      city: capitalize(cityInput),
-      phoneNumber: formatPhoneNumber(phoneNumberInput),
-    });
   };
 
   render() {
@@ -77,7 +86,7 @@ export class ClassForm extends Component {
     } = this.state;
 
     return (
-      <form onSubmit={this.handlePhoneNumberInput}>
+      <form onSubmit={this.handleSubmit}>
         <h3>User Information Form</h3>
 
         {/* first name input */}
@@ -90,9 +99,6 @@ export class ClassForm extends Component {
               this.setState({
                 firstNameInput: e.target.value,
                 setFirstNameInput: e.target.value,
-              });
-              this.setState({
-                isSubmitted: true,
               });
             }}
             value={firstNameInput}
@@ -113,9 +119,6 @@ export class ClassForm extends Component {
                 lastNameInput: e.target.value,
                 setLastNameInput: e.target.value,
               });
-              this.setState({
-                isSubmitted: true,
-              });
             }}
             value={lastNameInput}
           />
@@ -133,9 +136,6 @@ export class ClassForm extends Component {
               e.preventDefault();
               this.setState({
                 emailInput: e.target.value,
-              });
-              this.setState({
-                isSubmitted: true,
               });
             }}
             value={emailInput}
@@ -156,9 +156,6 @@ export class ClassForm extends Component {
               this.setState({
                 cityInput: e.target.value,
               });
-              this.setState({
-                isSubmitted: true,
-              });
             }}
             value={cityInput}
           />
@@ -167,12 +164,10 @@ export class ClassForm extends Component {
           <ErrorMessage message={cityErrorMessage} show={true} />
         )}
 
-        <div className="input-wrap">
-          <ClassPhoneInput
-            phoneNumberInput={phoneNumberInput}
-            handlePhoneNumberInput={this.handlePhoneNumberInput}
-          />
-        </div>
+        <ClassPhoneInput
+          phoneNumberInput={phoneNumberInput}
+          handlePhoneNumberInput={this.handlePhoneNumberInput}
+        />
 
         {!isPhoneValid(phoneNumberInput) && isSubmitted && (
           <ErrorMessage message={phoneNumberErrorMessage} show={true} />

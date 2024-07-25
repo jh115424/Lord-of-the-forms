@@ -13,6 +13,5 @@ export const isCityValid = (city) => {
 };
 
 export const isPhoneValid = (phone) => {
-  return phone.join("").length >= 7;
-
+  return phone.join("-").length >= 7;
 };
