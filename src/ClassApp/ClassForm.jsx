@@ -72,7 +72,19 @@ export class ClassForm extends Component {
         city: capitalize(cityInput),
         phoneNumber: formatPhoneNumber(phoneNumberInput),
       });
+      this.resetForm();
     }
+  };
+
+  resetForm = () => {
+    this.setState({
+      firstNameInput: "",
+      lastNameInput: "",
+      emailInput: "",
+      cityInput: "",
+      phoneNumberInput: ["", "", "", ""],
+      isSubmitted: false,
+    });
   };
 
   render() {
@@ -97,8 +109,7 @@ export class ClassForm extends Component {
             onChange={(e) => {
               e.preventDefault();
               this.setState({
-                firstNameInput: e.target.value,
-                setFirstNameInput: e.target.value,
+                firstNameInput: e.target.value.replace(/[^A-Za-z\s]/, ""),
               });
             }}
             value={firstNameInput}
@@ -116,8 +127,7 @@ export class ClassForm extends Component {
             onChange={(e) => {
               e.preventDefault();
               this.setState({
-                lastNameInput: e.target.value,
-                setLastNameInput: e.target.value,
+                lastNameInput: e.target.value.replace(/[^A-Za-z\s]/, ""),
               });
             }}
             value={lastNameInput}

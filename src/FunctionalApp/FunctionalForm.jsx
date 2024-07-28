@@ -41,15 +41,25 @@ export const FunctionalForm = ({ setUserData, userData }) => {
     ) {
       alert("Bad data Input");
       return;
+    } else {
+      setUserData({
+        firstName: capitalize(firstNameInput),
+        lastName: capitalize(lastNameInput),
+        email: emailInput,
+        city: capitalize(cityInput),
+        phoneNumber: formatPhoneNumber(phoneNumberInput),
+      });
+      resetForm();
     }
+  };
 
-    setUserData({
-      firstName: capitalize(firstNameInput),
-      lastName: capitalize(lastNameInput),
-      email: emailInput,
-      city: capitalize(cityInput),
-      phoneNumber: formatPhoneNumber(phoneNumberInput),
-    });
+  const resetForm = () => {
+    setFirstNameInput("");
+    setLastNameInput("");
+    setEmailInput("");
+    setCityInput("");
+    setIsSubmitted(false);
+    setPhoneNumberInput(["", "", "", ""]);
   };
 
   return (
@@ -65,7 +75,7 @@ export const FunctionalForm = ({ setUserData, userData }) => {
           placeholder="Bilbo"
           onChange={(e) => {
             e.preventDefault();
-            setFirstNameInput(e.target.value);
+            setFirstNameInput(e.target.value.replace(/[^A-Za-z\s]/, ""));
           }}
           value={firstNameInput}
         />
@@ -81,7 +91,7 @@ export const FunctionalForm = ({ setUserData, userData }) => {
           placeholder="Baggins"
           onChange={(e) => {
             e.preventDefault();
-            setLastNameInput(e.target.value);
+            setLastNameInput(e.target.value.replace(/[^A-Za-z\s]/, ""));
           }}
           value={lastNameInput}
         />
